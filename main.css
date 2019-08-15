@@ -1,0 +1,54 @@
+#video {
+    background-color: gray;
+
+}
+
+#canvas {
+    position: absolute;
+    top: 300px;
+    margin-top: 20px;
+}
+
+#buttonid {
+
+    width: 100px;
+    height: 200px;
+    margin-top: -330px;
+    margin-left: 500px;
+}
+
+button {
+    background-color: #4CAF50;
+    /* Green */
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    border-radius: 10%;
+}
+
+#startbutton {
+    width: 120px;
+    height: 80px;
+    padding: 10px;
+    margin: 12px;
+    border-color: #4CAF50;
+    border-width: 3px;
+}
+
+#startbutton2 {
+    width: 100px;
+    height: 80px;
+    padding: 10px;
+    margin: 12px;
+}
+
+#startbutton3 {
+    width: 100px;
+    height: 80px;
+    padding: 10px;
+    margin: 12px;
+}
