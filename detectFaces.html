@@ -12,9 +12,10 @@
         var faceid2;
 
         function verifyit() {
+            alert("inside verifyit");
             // Replace <Subscription Key> with your valid subscription key.
             var subscriptionKey = "4084e2b82b7e4d369569f0e51b441fd4";
-            alert(id);
+            //alert(id);
             // NOTE: You must use the same region in your REST call as you used to
             // obtain your subscription keys. For example, if you obtained your
             // subscription keys from westus, replace "westcentralus" in the URL
@@ -24,7 +25,7 @@
             // If you use a free trial subscription key, you shouldn't need to change 
             // this region.
             var uriBase =
-                "https://westcentralus.api.cognitive.microsoft.com/face/v1.0/detect";
+                "https://westcentralus.api.cognitive.microsoft.com/face/v1.0/verify";
 
             var params = {
                 "returnFaceId": "true",
@@ -32,6 +33,48 @@
                 //"returnFaceAttributes": "age,gender,headPose,smile,facialHair,glasses,emotion," +
                 //  "hair,makeup,occlusion,accessories,blur,exposure,noise"
             };
+
+            var sendthis = {
+                "faceId1": faceid1,
+                "faceId2": faceid2
+            }
+            alert(sendthis)
+            var sendthis_json = JSON.stringify(sendthis);
+            alert(sendthis_json)
+            $.ajax({
+                    url: uriBase,
+
+                    // Request headers.
+                    beforeSend: function (xhrObj) {
+                        xhrObj.setRequestHeader("Content-Type", "application/json");
+                        xhrObj.setRequestHeader("Ocp-Apim-Subscription-Key", subscriptionKey);
+                    },
+
+                    type: "POST",
+
+                    // Request body.
+                    data: sendthis_json,
+                })
+
+                .done(function (data) {
+                    // Show formatted JSON on webpage.
+                    var tempobj = data;
+                    // faceid2 = Object.values(tempobj[0])[0];
+                    $("#responseTextArea3").val(JSON.stringify(data));
+                    //alert(faceid2);
+
+                })
+
+                .fail(function (jqXHR, textStatus, errorThrown) {
+                    // Display error message.
+                    var errorString = (errorThrown === "") ?
+                        "Error. " : errorThrown + " (" + jqXHR.status + "): ";
+                    errorString += (jqXHR.responseText === "") ?
+                        "" : (jQuery.parseJSON(jqXHR.responseText).message) ?
+                        jQuery.parseJSON(jqXHR.responseText).message :
+                        jQuery.parseJSON(jqXHR.responseText).error.message;
+                    alert(errorString);
+                });
         }
 
         function processImage(id) {
@@ -140,7 +183,7 @@
 
     <div id="jsonOutput" style="width:100px; display:table-cell;">
         Verification:<br><br>
-        <textarea id="responseTextArea2" class="UIInput" style="width:380px; height:100px;"></textarea>
+        <textarea id="responseTextArea3" class="UIInput" style="width:380px; height:100px;"></textarea>
         <button onclick="verifyit()">CHECK</button>
     </div>
 </body>

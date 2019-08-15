@@ -4,3 +4,9 @@ https://upload.wikimedia.org/wikipedia/commons/c/c3/RH_Louise_Lillian_Gish.jpg
 
 //works with one that dont have hashed params (not sure)
 https://upload.wikimedia.org/wikipedia/commons/c/c7/Brad_Pitt_Inglorious_Basterds_Berlin_premiere.jpg
+
+//another brad pitt image
+https://upload.wikimedia.org/wikipedia/commons/f/f0/Brad_Pitt_2008.jpg
+
+//another brad pitt image
+https://upload.wikimedia.org/wikipedia/commons/5/51/Brad_Pitt_Fury_2014.jpg
