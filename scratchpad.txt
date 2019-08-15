@@ -1,0 +1,6 @@
+//default given in face api page
+https://upload.wikimedia.org/wikipedia/commons/c/c3/RH_Louise_Lillian_Gish.jpg
+
+
+//works with one that dont have hashed params (not sure)
+https://upload.wikimedia.org/wikipedia/commons/c/c7/Brad_Pitt_Inglorious_Basterds_Berlin_premiere.jpg
