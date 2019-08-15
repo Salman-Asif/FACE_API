@@ -8,6 +8,32 @@
 
 <body>
     <script type="text/javascript">
+        var faceid1;
+        var faceid2;
+
+        function verifyit() {
+            // Replace <Subscription Key> with your valid subscription key.
+            var subscriptionKey = "4084e2b82b7e4d369569f0e51b441fd4";
+            alert(id);
+            // NOTE: You must use the same region in your REST call as you used to
+            // obtain your subscription keys. For example, if you obtained your
+            // subscription keys from westus, replace "westcentralus" in the URL
+            // below with "westus".
+            //
+            // Free trial subscription keys are generated in the "westus" region.
+            // If you use a free trial subscription key, you shouldn't need to change 
+            // this region.
+            var uriBase =
+                "https://westcentralus.api.cognitive.microsoft.com/face/v1.0/detect";
+
+            var params = {
+                "returnFaceId": "true",
+                //  "returnFaceLandmarks": "false",
+                //"returnFaceAttributes": "age,gender,headPose,smile,facialHair,glasses,emotion," +
+                //  "hair,makeup,occlusion,accessories,blur,exposure,noise"
+            };
+        }
+
         function processImage(id) {
             // Replace <Subscription Key> with your valid subscription key.
             var subscriptionKey = "4084e2b82b7e4d369569f0e51b441fd4";
@@ -55,10 +81,17 @@
 
                 .done(function (data) {
                     // Show formatted JSON on webpage.
-                    if (id == 'inputImage')
-                        $("#responseTextArea").val(JSON.stringify(data, null, 2));
-                    else
-                        $("#responseTextArea2").val(JSON.stringify(data, null, 2));
+                    var tempobj = data;
+
+                    if (id == 'inputImage') {
+                        faceid1 = Object.values(tempobj[0])[0];
+                        $("#responseTextArea").val(faceid1);
+                        alert(faceid1);
+                    } else {
+                        faceid2 = Object.values(tempobj[0])[0];
+                        $("#responseTextArea2").val(faceid2);
+                        alert(faceid2);
+                    }
                 })
 
                 .fail(function (jqXHR, textStatus, errorThrown) {
@@ -86,7 +119,7 @@
     <div id="wrapper" style="width:1020px; display:table;">
         <div id="jsonOutput" style="width:100px; display:table-cell;">
             Response:<br><br>
-            <textarea id="responseTextArea" class="UIInput" style="width:380px; height:200px;"></textarea>
+            <textarea id="responseTextArea" class="UIInput" style="width:380px; height:100px;"></textarea>
         </div>
         <div id="imageDiv" style="width:420px; display:table-cell;">
             Source image:<br><br>
@@ -97,12 +130,18 @@
     <div id="wrapper" style="width:1020px; display:table;">
         <div id="jsonOutput" style="width:100px; display:table-cell;">
             Response:<br><br>
-            <textarea id="responseTextArea2" class="UIInput" style="width:380px; height:200px;"></textarea>
+            <textarea id="responseTextArea2" class="UIInput" style="width:380px; height:100px;"></textarea>
         </div>
         <div id="imageDiv" style="width:420px; display:table-cell;">
             Source image:<br><br>
             <img id="sourceImage2" width="200px" />
         </div>
+    </div>
+
+    <div id="jsonOutput" style="width:100px; display:table-cell;">
+        Verification:<br><br>
+        <textarea id="responseTextArea2" class="UIInput" style="width:380px; height:100px;"></textarea>
+        <button onclick="verifyit()">CHECK</button>
     </div>
 </body>
 
